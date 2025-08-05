@@ -2,8 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+model/
 venv/
+model/best_skin_disease_model_enhanced.pth
 # C extensions
 *.so
 
