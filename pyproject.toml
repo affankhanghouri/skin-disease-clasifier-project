@@ -1,0 +1,21 @@
+[project]
+name = "skin-disease-classifier"  # This will be your package name for pip install
+version = "0.0.1"
+description = "A skin disease classifier project with FastAPI and PyTorch"
+authors = [
+    { name = "Affan Khan Ghouri", email = "affanghouri333@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+# Load dependencies from requirements.txt
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+# Package discovery (src layout)
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Optional: Entry point for running FastAPI directly with `python -m skin_classifier`
+[project.scripts]
+skin-api = "skin_classifier.api.main:app"
