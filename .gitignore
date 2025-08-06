@@ -2,12 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
-model/
+model_path/
 venv/
 model/best_skin_disease_model_enhanced.pth
 # C extensions
 *.so
-
+logs/
 # Distribution / packaging
 .Python
 build/
