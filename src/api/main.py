@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from logger import logger
+from src.logger import logger
 from .model_loader import load_model_safe, device
 from . import model_loader
 from .preprocess_image import apply_transformation

@@ -1,8 +1,8 @@
 from PIL import Image
 import torch
 from torchvision import transforms
-from logger import logger
-from exception import MyException
+from src.logger import logger
+from src.exception import MyException
 import sys
 
 # This is the transformation which is required for efficientNet-B3

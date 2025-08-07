@@ -1,7 +1,7 @@
 import torch
 import numpy as np
-from logger import logger
-from exception import MyException
+from src.logger import logger
+from src.exception import MyException
 
 
 def predict_image(model , label_encoder , image_tensor , device):

@@ -4,8 +4,8 @@ import numpy as np
 import os
 from sklearn.preprocessing import LabelEncoder
 from torchvision.models import efficientnet_b3
-from logger import logger
-from exception import MyException
+from src.logger import logger
+from src.exception import MyException
 import sys
 
 
@@ -74,12 +74,15 @@ def load_model_safe():
 
         checkpoint_path = 'model_path/best_skin_disease_model_enhanced.pth'
 
+
         if not os.path.exists(checkpoint_path):
             error_msg = f"Model not found at {checkpoint_path}"
             logger.error(error_msg)
             raise MyException(error_msg , sys)
         
+
         logger.info(f"Loading checkpoint from  : {checkpoint_path}")
+
 
         # Add numpy.dtype to safe globals as suggested in the warning
         safe_globals = [
@@ -90,12 +93,15 @@ def load_model_safe():
             np._core.multiarray._reconstruct,
         ]
 
+
         try:
             # Adding safe globals before attempting to load
             torch.serialization.add_safe_globals(safe_globals)
             
             # loading safely first
             checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=True)
+
+
 
         except Exception as safe_error:
             # it is also safe bcz i trained it :)
@@ -108,17 +114,22 @@ def load_model_safe():
         required_keys = ['label_encoder','model_state_dict']
         missing_keys = [key for key in required_keys if key not in checkpoint]
 
+
+
         if missing_keys:
             error_msg = f"checkpoint file is missing required keys : {missing_keys}"
             logger.error(error_msg)
             raise MyException(error_msg,sys)
 
+
+
         # fetching label encoder 
         label_encoder = checkpoint['label_encoder']
         num_classes = len(label_encoder.classes_)
 
-         
+
         logger.info(f"Found {num_classes} classes")
+
 
 
         # creating model architecture with correct number of output classes
@@ -139,3 +150,5 @@ def load_model_safe():
       error_msg = f"Failed to load model: {str(e)}"
       logger.error(error_msg)
       raise MyException(error_msg, sys)
+    
+
